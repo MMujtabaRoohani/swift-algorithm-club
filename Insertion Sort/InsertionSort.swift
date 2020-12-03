@@ -12,8 +12,11 @@ func insertionSort<T>(_ array: [T], _ isOrderedBefore: (T, T) -> Bool) -> [T] {
         var currentIndex = index
         let temp = sortedArray[currentIndex]
         while currentIndex > 0, isOrderedBefore(temp, sortedArray[currentIndex - 1]) {
-            sortedArray[currentIndex] = sortedArray[currentIndex - 1]
             currentIndex -= 1
+        }
+        if currentIndex != index {
+            sortedArray.insert(temp, at: currentIndex)
+            sortedArray.remove(at: index+1)
         }
         sortedArray[currentIndex] = temp
     }
@@ -32,8 +35,11 @@ func insertionSort<T: Comparable>(_ array: [T]) -> [T] {
         var currentIndex = index
         let temp = sortedArray[currentIndex]
         while currentIndex > 0, temp < sortedArray[currentIndex - 1] {
-            sortedArray[currentIndex] = sortedArray[currentIndex - 1]
             currentIndex -= 1
+        }
+        if currentIndex != index {
+            sortedArray.insert(temp, at: currentIndex)
+            sortedArray.remove(at: index+1)
         }
         sortedArray[currentIndex] = temp
     }
